@@ -102,15 +102,15 @@ public class Table {
         Color foodFlavour = Color.INDIANRED;
 
         int seats = this.getPhilosophers().size();
-        double radius = getRadius()/5;
+        double radius = this.getRadius()*2/seats;
 
         double radStep = 2*Math.PI/seats;
 
         Group plates = new Group();
         for(int i = 0 ; i < seats; i++){
 
-            double centerX = this.getCenterX()+this.getRadius()*0.8f*Math.cos(i*radStep);
-            double centerY = this.getCenterY()+this.getRadius()*0.8f*Math.sin(i*radStep);
+            double centerX = this.getCenterX()+(this.getRadius()-radius)*1.00f*Math.cos(i*radStep);
+            double centerY = this.getCenterY()+(this.getRadius()-radius)*1.00f*Math.sin(i*radStep);
 
             Circle plate = new Circle();
             plate.setCenterX(centerX);
@@ -161,7 +161,7 @@ public class Table {
         }
     }
 
-    public void reportCommitmets(){
+    public void reportCommitments(){
         for(Philosopher p: this.getPhilosophers()){
             p.showPromises();
         }
@@ -180,7 +180,7 @@ public class Table {
             if(!this.philosophers.get(i).getForks().isEmpty()){
                 for(int j = 0 ; j < this.getPhilosophers().get(i).getForks().size();    j++) {
                     Color forkColor = this.philosophers.get(i).getForks().get(0).getColor();
-                    Polygon fork = this.philosophers.get(i).getForks().get(0).getShape(this.getCenterX(), this.getCenterY(), radius, i * (360 / seats)-j*(180/seats));
+                    Polygon fork = this.philosophers.get(i).getForks().get(0).getShape(this.getCenterX(), this.getCenterY(), radius, i * (360 / seats)-j*(180/seats),seats);
                     fork.setFill(forkColor);
                     forks.getChildren().add(fork);
                 }
@@ -189,11 +189,10 @@ public class Table {
         return forks;
     }
 
-
     public Group drawPhilosophers(){
         Color plateColor = Color.LIGHTPINK;
         int seats = this.getPhilosophers().size();
-        double radius = getRadius()/5;
+        double radius = getRadius()*2/seats;
 
         double radStep = 2*Math.PI/seats;
 
@@ -201,8 +200,8 @@ public class Table {
 
         for(int i = 0 ; i < seats; i++){
             Circle guest = new Circle();
-            guest.setCenterX(getCenterX()+getRadius()*1.2*Math.cos(i*radStep));
-            guest.setCenterY(getCenterY()+getRadius()*1.2*Math.sin(i*radStep));
+            guest.setCenterX(getCenterX()+(getRadius()+radius)*1.0*Math.cos(i*radStep));
+            guest.setCenterY(getCenterY()+(getRadius()+radius)*1.0*Math.sin(i*radStep));
 
             guest.setRadius(radius);
             guest.setFill(plateColor);

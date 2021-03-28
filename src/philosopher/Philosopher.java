@@ -154,7 +154,9 @@ public class Philosopher {
 
     public void giveAwayForks(){
         for(Philosopher p: this.getForkRequests()){
-            passFork(p,this.getForks().get(this.getForks().size()-1));
+            if(this.getForks().size()>0) {
+                passFork(p, this.getForks().get(this.getForks().size() - 1));
+            }
         }
         this.getForkRequests().clear();
     }

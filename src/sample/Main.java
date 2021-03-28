@@ -110,6 +110,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 dinner.newRound();
+                root.getChildren().add(dinner.drawTable());
                 root.getChildren().add(dinner.drawPlates());
                 root.getChildren().add(dinner.drawForks());
 
@@ -119,7 +120,7 @@ public class Main extends Application {
         commitmentsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                dinner.reportCommitmets();
+                dinner.reportCommitments();
                 //root.getChildren().add(dinner.drawPlates());
                 //root.getChildren().add(dinner.drawForks());
 
